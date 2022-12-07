@@ -1,0 +1,5 @@
+version: 1.0
+workflows:
+  - name: AdmixtureTest
+    subclass: WDL
+    primaryDescriptorPath: /admixture.wdl
