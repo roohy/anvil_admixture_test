@@ -80,7 +80,7 @@ task MergeRefPanel {
     Int disk_size1 = ceil(1.5*(size(bed1, "GB") + size(bim1, "GB") + size(fam1, "GB")))
     Int disk_size_all = disk_size1 + ceil(1.5*(size(bed2, "GB") + size(bim2, "GB") + size(fam2, "GB")))
     command <<<
-        plink --bed ~{bed1} --bim ~{bim1} --fam ~{fam1} --bmerge ~{bed2} ~{bim2} ~{fam2} --make-bed --out ~{output_prefix}
+        plink --bed ~{bed1} --bim ~{bim1} --fam ~{fam1} --bmerge ~{bed2} ~{bim2} ~{fam2} --make-bed --out ~{output_prefix} --maf 0.01
     >>>
 
     output{
