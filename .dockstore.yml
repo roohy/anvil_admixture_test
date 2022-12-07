@@ -1,5 +1,7 @@
-version: 1.0
+version: 1.2
 workflows:
   - name: AdmixtureTest
     subclass: WDL
-    primaryDescriptorPath: /admixture.wdl
+    primaryDescriptorPath: admixture.wdl
+    authors:
+      - orcid: 0000-0003-1065-7244
