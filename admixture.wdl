@@ -89,7 +89,7 @@ task MergeRefPanel {
         File merged_fam = "~{output_prefix}.fam"
     }
     runtime {
-    docker: "roohy7/plink1.9"
+    docker: "roohy7/plink-1.9"
     disks: "local-disk " + disk_size_all + " HDD"
     memory: mem + " GB"
   }
