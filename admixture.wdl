@@ -94,3 +94,33 @@ task MergeRefPanel {
     memory: mem + " GB"
   }
 }
+
+task LDPrune {
+  input {
+    File bed_file
+    File bim_file
+    File fam_file
+    Float min_r
+    Int window_size
+    Int step_size
+    String output_prefix
+    Int mem = 4
+  }
+  Int disk_size = ceil(1.5*(size(bed_file, "GB") + size(bim_file, "GB") + size(fam_file, "GB")))
+  command <<<
+    plink --bed ~{bed_file} --bim ~{bim_file} --fam ~{fam_file} --indep-pairwise ~{window_size} ~{step_size} ~{min_r} --out ~{output_prefix}
+    plink --bed ~{bed_file} --bim ~{bim_file} --fam ~{fam_file} --extract ~{output_prefix}.prune.in --make-bed --out ~{output_prefix}
+    rm ~{output_prefix}.prune.*
+  >>>
+
+  output{
+    File pruned_bed = '~{output_prefix}.bed'
+    File pruned_bim = '~{output_prefix}.bim'
+    File pruned_fam = '~{output_prefix}.fam'
+  }
+  runtime {
+    docker: "roohy7/plink-1.9"
+    disks: "local-disk " + disk_size + " HDD"
+    memory: mem + " GB"
+  }
+}
