@@ -40,7 +40,7 @@ task Admixture_t {
     File fam
     Int n_ancestral_populations
     Boolean cv = false
-    Int mem = 16
+    Int mem = 32
     Int n_cpus = 4
   }
 
